@@ -1,6 +1,7 @@
 class Raclette < ApplicationRecord
 
   belongs_to :user
+  has_one_attached :photo
 
   CATEGORIES = [ "vertical", "poelons", "bougies" ]
 
