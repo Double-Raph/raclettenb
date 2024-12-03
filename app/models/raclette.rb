@@ -1,4 +1,6 @@
 class Raclette < ApplicationRecord
+  self.inheritance_column = nil
+
   belongs_to :user
 
   TYPES = [ "vertical", "poelons", "bougies" ]
