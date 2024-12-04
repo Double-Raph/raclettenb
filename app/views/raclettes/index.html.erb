@@ -3,7 +3,9 @@
 <div>
   <% @raclettes.each do |raclette| %>
     <div class="raclette-card">
-      <h2><%= raclette.category %></h2>
+      <%= link_to raclette_path(raclette) do %>
+        <h2><%= raclette.category %></h2>
+      <% end %>
       <p>Capacity: <%= raclette.capacity %> persons</p>
       <p>Price: <%= raclette.price %>€</p>
       <p><%= raclette.description %></p>

@@ -1,7 +1,8 @@
 <div class="d-flex justify-content-center">
-  <div class="border px-4 py-5 rounded shadow">
-    <p>Capacité: <%= @raclette.capacity %> personnes</p>
-    <p>Prix: <%= @raclette.price %>€</p>
-    <p>Description: <%= @raclette.description %></p>
-  </div>
+ <div class="border px-4 py-5 rounded shadow">
+   <p>Capacité: <%= @raclette.capacity %> personnes</p>
+   <p>Prix: <%= @raclette.price %>€</p>
+   <p>Description: <%= @raclette.description %></p>
+   <%= link_to "Reserver cette machine", new_raclette_booking_path(@raclette), class: "btn btn-primary mt-3" %>
+ </div>
 </div>
