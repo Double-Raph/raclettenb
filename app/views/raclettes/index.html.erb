@@ -1,14 +1,25 @@
+<div class="container">
 <h1>Raclettes</h1>
 
-<div>
+<div class="cards-container">
   <% @raclettes.each do |raclette| %>
-    <div class="raclette-card">
-      <%= link_to raclette_path(raclette) do %>
-        <h2><%= raclette.category %></h2>
-      <% end %>
-      <p>Capacity: <%= raclette.capacity %> persons</p>
-      <p>Price: <%= raclette.price %>€</p>
-      <p><%= raclette.description %></p>
+    <%= link_to raclette_path(raclette) do %>
+    <div class="flip-card">
+      <div class="flip-card-inner">
+        <div class="flip-card-front">
+          <div class="capsules sticky-bottom">
+            <div class="capsule"><%= raclette.category %></div>
+            <div class="capsule"><%= raclette.capacity %> places</div>
+            <div class="capsule"><%= raclette.price %>€</div>
+          </div>
+        </div>
+        <div class="flip-card-back">
+          <p><%= raclette.description %></p>
+        </div>
+      </div>
     </div>
+    <% end %>
   <% end %>
+</div>
+
 </div>
