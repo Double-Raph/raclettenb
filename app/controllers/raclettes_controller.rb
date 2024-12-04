@@ -30,6 +30,6 @@ class RaclettesController < ApplicationController
   private
 
   def raclette_params
-    params.require(:raclette).permit(:type, :capacity, :description, :price)
+    params.require(:raclette).permit(:category, :capacity, :description, :price)
   end
 end
