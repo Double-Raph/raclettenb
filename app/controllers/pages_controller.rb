@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
+  skip_before_action :authenticate_user!, only: :home
+
   def home
-    
     @raclettes = Raclette.includes(:user, :bookings)
 
     @address = params[:address]
