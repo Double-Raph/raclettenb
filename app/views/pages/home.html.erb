@@ -1,34 +1,40 @@
-<div class="banner">
-  <h1 class="text-center">Bienvenue chez Raclettenb mon Glouton !</h1>
-  <p class="text-center">trouve en quelques clics la Raclette de tes rêves</p>
-</div>
+<div class="banner" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url(https://assets.afcdn.com/story/20200124/2038604_w8272h4656cx4136cy2328cxt0cyt0cxb8272cyb4656.jpg); background-size: cover; background-position: center; display: flex; flex-direction: column; justify-content: center; align-items: center; height: 100vh;">
+  <div class="container text-center text-white">
+    <!-- Logo ajouté ici -->
+    <img src="https://res.cloudinary.com/dpvyuykw6/image/upload/v1733327413/logo-large-white_zbpami.png" alt="Racletten Logo" class="img-fluid mb-4" style="max-width: 200px;">
 
-<div class="search-form mt-4">
-  <%= form_with url: raclettes_path, method: :get, local: true do |f| %>
-    <div class="row">
+    <h1>Bienvenue chez Racletten, mon Glouton !</h1>
+    <p>Retrouve en quelques clics la raclette de tes rêves.</p>
+  </div>
 
-      <div class="col-md-3">
-        <%= f.label :address, "Address" %>
-        <%= f.text_field :address, class: "form-control", placeholder: "Enter address" %>
-      </div>
+  <div class="search-form mt-4" style="background-color: rgba(255, 255, 255, 0.8); padding: 2rem; width: 100%; max-width: 800px;">
+    <%= form_with url: raclettes_path, method: :get, local: true do |f| %>
+      <div class="row">
 
-      <div class="col-md-2">
-        <%= f.label :start_date, "Start Date" %>
-        <%= f.date_field :start_date, class: "form-control", min: Date.today %>
-      </div>
+        <div class="col-md-3">
+          <%= f.label :address, "Address" %>
+          <%= f.text_field :address, class: "form-control", placeholder: "Enter address" %>
+        </div>
 
-      <div class="col-md-2">
-        <%= f.label :end_date, "End Date" %>
-        <%= f.date_field :end_date, class: "form-control", min: Date.today %>
-      </div>
+        <div class="col-md-2">
+          <%= f.label :start_date, "Start Date" %>
+          <%= f.date_field :start_date, class: "form-control", min: Date.today %>
+        </div>
 
-      <div class="col-md-2">
-        <%= f.label :capacity, "Capacity" %>
-        <%= f.number_field :capacity, class: "form-control", min: 2, max: 20, placeholder: "People"  %>
-      </div>
+        <div class="col-md-2">
+          <%= f.label :end_date, "End Date" %>
+          <%= f.date_field :end_date, class: "form-control", min: Date.today %>
+        </div>
 
-      <div class="col-md-3 d-flex align-items-end">
-        <%= f.submit "Search", class: "btn btn-primary w-100" %>
+        <div class="col-md-2">
+          <%= f.label :capacity, "Capacity" %>
+          <%= f.number_field :capacity, class: "form-control", min: 2, max: 20, placeholder: "People" %>
+        </div>
+
+        <div class="col-md-3 d-flex align-items-end">
+          <%= f.submit "Search", class: "btn btn-primary w-100" %>
+        </div>
+
       </div>
     </div>
   <% end %>
