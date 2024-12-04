@@ -10,9 +10,7 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   # root "posts#index"
   resources :raclettes do
-    member do
-      resources :bookings, only: [:new, :create]
-    end
+    resources :bookings, only: [:new, :create]
   end
 
   get :my_raclettes, to: "raclettes#my_raclettes", as: "my_raclettes"
