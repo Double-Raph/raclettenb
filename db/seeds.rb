@@ -42,7 +42,8 @@ raclette_devices = []
     capacity: rand(2..20),
     user: users.sample,
     price: rand(10..50),
-    description: Faker::Lorem.sentence(word_count: 10)
+    description: Faker::Lorem.sentence(word_count: 10),
+    address: "1 rue labrouste, Paris"
   )
 end
 

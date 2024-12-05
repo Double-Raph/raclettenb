@@ -1,6 +1,13 @@
 class RaclettesController < ApplicationController
+
   def index
     @raclettes = Raclette.all
+    @markers = @raclettes.geocoded.map do |raclette|
+      {
+        lat: raclette.latitude,
+        lng: raclette.longitude
+      }
+    end
   end
 
   def show
@@ -48,6 +55,6 @@ class RaclettesController < ApplicationController
   private
 
   def raclette_params
-    params.require(:raclette).permit(:category, :capacity, :description, :price, :photo)
+    params.require(:raclette).permit(:category, :capacity, :description, :price, :photo, :address, :city, :country)
   end
 end
