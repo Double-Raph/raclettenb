@@ -31,7 +31,7 @@ class RaclettesController < ApplicationController
     @raclette = Raclette.find(params[:id])
 
     if @raclette.update(raclette_params)
-      redirect_to raclettes_path, notice: "mise à jour effectuée !" # TODO remplacer par dashboard_path
+      redirect_to dashboard_path, notice: "mise à jour effectuée !" # TODO remplacer par dashboard_path
     else
       render :edit, status: :unprocessable_entity
     end
