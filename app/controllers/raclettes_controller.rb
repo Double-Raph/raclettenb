@@ -7,6 +7,7 @@ class RaclettesController < ApplicationController
 
   def show
     @raclette = Raclette.find(params[:id])
+    @booking = Booking.new
   end
 
   def new
@@ -31,7 +32,7 @@ class RaclettesController < ApplicationController
     @raclette = Raclette.find(params[:id])
 
     if @raclette.update(raclette_params)
-      redirect_to dashboard_path, notice: "mise à jour effectuée !" # TODO remplacer par dashboard_path
+      redirect_to dashboard_path, notice: "mise à jour effectuée !"
     else
       render :edit, status: :unprocessable_entity
     end
