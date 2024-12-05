@@ -27,15 +27,11 @@ class RaclettesController < ApplicationController
     @raclette = Raclette.find(params[:id])
   end
 
-  def my_raclettes
-    @raclettes = current_user.raclettes
-  end
-
   def update
     @raclette = Raclette.find(params[:id])
 
     if @raclette.update(raclette_params)
-      redirect_to my_raclettes_path, notice: "mise à jour effectuée !"
+      redirect_to raclettes_path, notice: "mise à jour effectuée !" # TODO remplacer par dashboard_path
     else
       render :edit, status: :unprocessable_entity
     end
@@ -44,7 +40,7 @@ class RaclettesController < ApplicationController
   def destroy
     @raclette = Raclette.find(params[:id])
     @raclette.destroy
-    redirect_to my_raclettes_path, notice: "Raclette supprimée"
+    redirect_to dashboard_path, notice: "Raclette supprimée"
   end
 
   private

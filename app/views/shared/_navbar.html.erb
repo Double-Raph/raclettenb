@@ -21,7 +21,7 @@
             <%= image_tag "user-icon.png", class: "dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "Mes réservations", bookings_path, class: "dropdown-item" %>
-              <%= link_to "Mes appareils", dashboard_path, class: "dropdown-item" %> 
+              <%= link_to "Mes appareils", dashboard_path, class: "dropdown-item" %>
               <hr>
               <%= link_to "Déconnexion", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
             </div>
