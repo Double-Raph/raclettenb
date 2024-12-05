@@ -7,6 +7,7 @@ class RaclettesController < ApplicationController
 
   def show
     @raclette = Raclette.find(params[:id])
+    @booking = Booking.new
   end
 
   def new
