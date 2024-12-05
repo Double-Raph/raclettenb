@@ -1,7 +1,9 @@
-<h1>Ma réservation</h1>
-<div>Dates : <%= @booking.start_date %> - <%= @booking.end_date %></div>
-<div>Statut : <%= @booking.status %></div>
-<div><%= link_to "Voir l'appareil réservé", raclette_path(@raclette), class: "btn btn-primary"%>
-<%= link_to "Annuler la réservation", booking_path(@booking), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this booking ?"}, class: 'text-danger' %>          </div>
+<div class="container">
+  <h1>Ma réservation</h1>
+  <div>Dates : <%= @booking.start_date %> - <%= @booking.end_date %></div>
+  <div>Statut : <%= @booking.status %></div>
+  <div><%= link_to "Voir l'appareil réservé", raclette_path(@raclette), class: "btn btn-primary"%>
+  <%= link_to "Annuler la réservation", booking_path(@booking), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this booking ?"}, class: 'text-danger' %>          </div>
 
-<div><%= link_to "Toutes mes réservations", bookings_path, class: "btn btn-secondary"%>
+  <div><%= link_to "Toutes mes réservations", bookings_path, class: "btn btn-secondary"%>
+</div>
