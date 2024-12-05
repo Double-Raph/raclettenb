@@ -28,8 +28,12 @@ class BookingsController < ApplicationController
 
   def accept
     @booking = Booking.find(params[:id])
-    # set le status de booking en "accepted"
     @booking.status = "confirmed"
+    if @booking.update(booking_params)
+      redirect_to dashboard_path
+    else
+      render :new, status: :unprocessable_entity
+    end
   end
 
   def decline
