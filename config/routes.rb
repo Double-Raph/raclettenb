@@ -13,8 +13,6 @@ Rails.application.routes.draw do
     resources :bookings, only: [:new, :create]
   end
 
-  get :my_raclettes, to: "raclettes#my_raclettes", as: "my_raclettes"
-
   resources :bookings, except: [:new, :create] do
     member do
       patch :accept
@@ -23,4 +21,5 @@ Rails.application.routes.draw do
   end
 
   get :my_bookings, to: "bookings#my_bookings", as: "my_bookings"
+  get :dashboard, to: "pages#dashboard", as: "dashboard"
 end

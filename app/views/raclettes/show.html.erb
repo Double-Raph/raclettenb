@@ -1,8 +1,24 @@
-<div class="d-flex justify-content-center">
- <div class="border px-4 py-5 rounded shadow">
-   <p>Capacité: <%= @raclette.capacity %> personnes</p>
-   <p>Prix: <%= @raclette.price %>€</p>
-   <p>Description: <%= @raclette.description %></p>
-   <%= link_to "Reserver cette machine", new_raclette_booking_path(@raclette), class: "btn btn-primary mt-3" %>
+ <div class="d-flex justify-content-evenly align-items-start mt-5">
+   <div class="card shadow" style="width: 400px; border-radius: 7px;">
+     <%= image_tag @raclette.photo.attached? ? @raclette.photo : "raclette-placeholder.webp", class: "card-img-top", alt: "machine-img", style: "height: 200px; object-fit: cover" %>
+     <div class="card-body">
+       <h5 class="card-title mb-2">Appareil de type <%= @raclette.category %></h5>
+       <p class="card-text mb-1 opacity-75"><%= @raclette.description %></p>
+       <p class="card-text mb-2 opacity-75">Capacité: <%= @raclette.capacity %> personnes</p>
+       <h5 class="card-text mb-0"><%= @raclette.price %>€</h5>
+     </div>
+   </div>
+
+   <div class="card shadow p-4" style="width: 800px; border-radius: 7px;">
+     <h2 class="text-center mb-4">Réserver une machine à raclette</h2>
+     <%= simple_form_for [@raclette, @booking] do |f| %>
+       <%= f.input :start_date,
+                   input_html: { class: "form-control form-control-lg" } %>
+       <%= f.input :end_date,
+                   input_html: { class: "form-control form-control-lg" } %>
+       <div class="text-center mt-4">
+         <%= f.submit "Confirmer", class: "btn btn-red btn-lg" %>
+       </div>
+     <% end %>
+   </div>
  </div>
-</div>
