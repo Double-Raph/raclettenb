@@ -39,4 +39,12 @@ class PagesController < ApplicationController
       end
     end
   end
+
+  def dashboard
+    # toutes les reservations faites par le user loggué
+    # @my_bookings = current_user.bookings.includes(:raclette)
+
+    # toutes les raclettes du user et les bookings associés
+    @my_raclettes = current_user.raclettes
+  end
 end
