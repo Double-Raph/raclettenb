@@ -3,6 +3,13 @@ class RaclettesController < ApplicationController
 
   def index
     @raclettes = Raclette.all
+    if params[:capacity].present?
+      @raclettes = @raclettes.where(capacity: params[:capacity])
+    end
+    if params[:city].present?
+      @raclettes = @raclettes.where("city ILIKE ?", "%#{params[:city]}%")
+    end
+
   end
 
   def show
@@ -16,6 +23,7 @@ class RaclettesController < ApplicationController
   def create
     @raclette = Raclette.new(raclette_params)
     @raclette.user = current_user
+    @raclette.city = current_user.address
     if @raclette.save
       redirect_to dashboard_path, notice: "Machine bien enregistré"
     else
