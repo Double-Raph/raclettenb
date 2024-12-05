@@ -1,8 +1,19 @@
 <div class="container">
-  <h1>Nouvelle réservation</h1>
-  <%= simple_form_for [@raclette, @booking] do |f| %>
-    <%= f.input :start_date %>
-    <%= f.input :end_date %>
-    <%= f.submit "Confirmer", class: "btn btn-primary" %>
-  <% end %>
+ <div class="row justify-content-center">
+   <div class=" col-md-11">
+     <div class="card shadow p-4 mt-5">
+       <h2 class="text-center mb-4">Réserver une machine à raclette</h2>
+
+       <%= simple_form_for [@raclette, @booking] do |f| %>
+         <%= f.input :start_date,
+                     input_html: { class: "form-control form-control-lg" } %>
+         <%= f.input :end_date,
+                     input_html: { class: "form-control form-control-lg" } %>
+         <div class="text-center mt-4">
+           <%= f.submit "Confirmer", class: "btn btn-red btn-lg" %>
+         </div>
+       <% end %>
+     </div>
+   </div>
+ </div>
 </div>

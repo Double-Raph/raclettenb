@@ -1,26 +1,26 @@
 <div class="container">
-<h1>Raclettes</h1>
-
-<div class="cards-container">
-  <% @raclettes.each do |raclette| %>
-    <%= link_to raclette_path(raclette) do %>
-    <div class="flip-card">
-      <div class="flip-card-inner">
-        <div class="flip-card-front">
-          <div class="capsules sticky-bottom">
-            <div class="capsule"><%= raclette.category %></div>
-            <div class="capsule"><%= raclette.capacity %> places</div>
-            <div class="capsule"><%= raclette.price %>€</div>
-            <p><%= raclette.city %></p> <%# TODO à supprimer %>
-          </div>
-        </div>
-        <div class="flip-card-back">
-          <p><%= raclette.description %></p>
-        </div>
-      </div>
-    </div>
-    <% end %>
-  <% end %>
-</div>
-
+ <h1 class="my-5">Les machines raclettes</h1>
+ <div class="row row-cols-1 row-cols-md-3 g-4">
+   <% @raclettes.each do |raclette| %>
+     <div class="col">
+       <%= link_to raclette_path(raclette), class: "text-decoration-none" do %>
+         <div class="flip-card">
+           <div class="flip-card-inner">
+             <div>
+                <%= image_tag raclette.photo.attached? ? raclette.photo : "raclette-placeholder.webp", class: "card-img-top", alt: "machine-img", style: "height: 200px; width: 100%; object-fit: cover" %>
+               <div class="capsules sticky-bottom">
+                 <div class="capsule" style="background-color: #ff5a5f; color: white;"><%= raclette.category %></div>
+                 <div class="capsule" style="background-color: #ff5a5f; color: white;"><%= raclette.capacity %> places</div>
+                 <div class="capsule" style="background-color: #ff5a5f; color: white;"><%= raclette.price %>€</div>
+               </div>
+             </div>
+             <div class="flip-card-back">
+               <p><%= raclette.description %></p>
+             </div>
+           </div>
+         </div>
+       <% end %>
+     </div>
+   <% end %>
+ </div>
 </div>

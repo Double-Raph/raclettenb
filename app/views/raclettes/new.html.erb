@@ -1,7 +1,7 @@
-<div class="d-flex justify-content-center align-items-center vh-100">
- <div class="border p-4 rounded shadow">
+<div class="d-flex justify-content-center align-items-center my-5">
+ <div class="border p-4 rounded shadow" style="width: 600px;">
    <%= simple_form_for(@raclette) do |f| %>
-     <div class="row row-cols-2 g-3">
+     <div class="row row-cols-1 g-3">
        <div class="col">
          <%= f.label :type, "Type de machine", class: "form-label" %>
          <%= f.select :category, Raclette::CATEGORIES, class: "form-select" %>
@@ -27,7 +27,7 @@
        </div>
 
        <div class="col-12">
-         <%= f.submit "Créer", class: "btn btn-primary w-100" %>
+         <%= f.submit "Créer", class: "btn btn-red w-100" %>
        </div>
      </div>
    <% end %>
