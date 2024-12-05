@@ -21,4 +21,5 @@ Rails.application.routes.draw do
   end
 
   get :my_bookings, to: "bookings#my_bookings", as: "my_bookings"
+  get :dashboard, to: "pages#dashboard", as: "dashboard"
 end

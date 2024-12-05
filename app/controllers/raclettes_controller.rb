@@ -1,4 +1,6 @@
 class RaclettesController < ApplicationController
+  skip_before_action :authenticate_user!, only: [:index, :show]
+
   def index
     @raclettes = Raclette.all
   end
@@ -15,7 +17,7 @@ class RaclettesController < ApplicationController
     @raclette = Raclette.new(raclette_params)
     @raclette.user = current_user
     if @raclette.save
-      redirect_to raclette_path(@raclette), notice: "Machine bien enregistré"
+      redirect_to dashboard_path, notice: "Machine bien enregistré"
     else
       render :new, status: :unprocessable_entity
     end

@@ -1,0 +1,18 @@
+<h1>Dashboard</h1>
+
+<h2>Mes appareils</h2>
+<% if @my_raclettes.any? %>
+  <ul>
+    <% @my_raclettes.each do |raclette| %>
+      <li>
+        <strong><%= raclette.category %></strong> - <%= raclette.capacity %> personnes
+        <%= image_tag raclette.photo.url, alt: "#{raclette.category} photo", if raclette.photo.attached? %>
+        <span><strong>Prix : </strong><%= number_to_currency(raclette.price, unit: "€") %></span>
+        <%= link_to 'Edit', edit_raclette_path(raclette) %>
+        <%= button_to 'Delete', raclette_path(raclette), turbo_method: :delete, data: { confirm: 'êtes-vous sûr de vouloir supprimer cette raclette ?' } %>
+      </li>
+    <% end %>
+  </ul>
+<% else %>
+  <p>Tu n'as pas d'appareil.</p>
+<% end %>
