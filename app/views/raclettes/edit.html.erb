@@ -1,0 +1,35 @@
+<div class="d-flex justify-content-center align-items-center vh-100">
+ <div class="border p-4 rounded shadow">
+   <%= simple_form_for(@raclette) do |f| %>
+     <div class="row row-cols-2 g-3">
+       <div class="col">
+         <%= f.label :type, "Type de machine", class: "form-label" %>
+         <%= f.select :category, Raclette::CATEGORIES, class: "form-select" %>
+       </div>
+
+       <div class="col">
+         <%= f.label :capacity, "Capacité", class: "form-label" %>
+         <%= f.number_field :capacity, class: "form-control", min: 0 %>
+       </div>
+
+       <div class="col">
+         <%= f.label :price, "Prix", class: "form-label" %>
+         <%= f.number_field :price, class: "form-control", min: 0 %>
+       </div>
+
+       <div class="col">
+         <%= f.label :description, "Description", class: "form-label" %>
+         <%= f.text_area :description, class: "form-control" %>
+       </div>
+
+        <div class="col">
+         <%= f.input :photo, as: :file %>
+       </div>
+
+       <div class="col-12">
+         <%= f.submit "Modifier", class: "btn btn-primary w-100" %>
+       </div>
+     </div>
+   <% end %>
+ </div>
+</div>
