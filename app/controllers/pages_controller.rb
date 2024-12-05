@@ -46,5 +46,6 @@ class PagesController < ApplicationController
 
     # toutes les raclettes du user et les bookings associés
     @my_raclettes = current_user.raclettes
+    @my_raclettes.each(&:bookings)
   end
 end
