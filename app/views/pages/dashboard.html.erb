@@ -29,7 +29,7 @@
               <i class="fas fa-edit"></i>
             <% end %>
 
-            <%= link_to raclette_path(raclette), method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer cette raclette ?' }, class: 'btn btn-outline-danger btn-sm' do %>
+            <%= link_to raclette_path(raclette), turbo_method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer cette raclette ?' }, class: 'btn btn-outline-danger btn-sm' do %>
               <i class="fas fa-trash-alt"></i>
             <% end %>
           </div>
