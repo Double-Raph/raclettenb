@@ -1,5 +1,5 @@
 class PagesController < ApplicationController
-  skip_before_action :authenticate_user!, only: [:home, :index, :show]
+  skip_before_action :authenticate_user!, only: :home
 
   def home
     @raclettes = Raclette.includes(:user, :bookings)
@@ -38,5 +38,13 @@ class PagesController < ApplicationController
         end
       end
     end
+  end
+
+  def dashboard
+    # toutes les reservations faites par le user loggué
+    # @my_bookings = current_user.bookings.includes(:raclette)
+
+    # toutes les raclettes du user et les bookings associés
+    @my_raclettes = current_user.raclettes
   end
 end
