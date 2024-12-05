@@ -2,20 +2,23 @@ class RaclettesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @raclettes = Raclette.all
-    if params[:capacity].present?
-      @raclettes = @raclettes.where(capacity: params[:capacity])
-    end
-    if params[:city].present?
-      @raclettes = @raclettes.where("city ILIKE ?", "%#{params[:city]}%")
-    end
+  @raclettes = Raclette.where.not(latitude: nil, longitude: nil)
 
-    @markers = @raclettes.geocoded.map do |raclette|
-      {
-        lat: raclette.latitude,
-        lng: raclette.longitude
-      }
-    end
+  if params[:capacity].present?
+    @raclettes = @raclettes.where("capacity >= ?", params[:capacity].to_i)
+  end
+
+  if params[:city].present?
+    @raclettes = @raclettes.where("city ILIKE ?", "%#{params[:city]}%")
+  end
+
+  @markers = @raclettes.map do |raclette|
+    {
+      lat: raclette.latitude,
+      lng: raclette.longitude,
+      info_window_html: render_to_string(partial: "info_window", locals: { raclette: raclette })
+    }
+  end
   end
 
   def show
