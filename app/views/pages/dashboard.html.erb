@@ -11,6 +11,9 @@
         <%= link_to 'Edit', edit_raclette_path(raclette) %>
         <%= button_to 'Delete', raclette_path(raclette), turbo_method: :delete, data: { confirm: 'êtes-vous sûr de vouloir supprimer cette raclette ?' } %>
       </li>
+      <%# à mettre à l'intérieur du @raclette_bookings.each do |booking| :%>
+      <%# link_to 'Accept', accept_booking_path(booking) %>
+      <%# link_to 'Decline', decline_booking_path(booking) %>
     <% end %>
   </ul>
 <% else %>
