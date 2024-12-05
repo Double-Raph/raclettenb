@@ -1,7 +1,7 @@
-<div class="navbar  sticky-top navbar-expand-sm navbar-light navbar-lewagon">
+<div class="navbar sticky-top navbar-expand-sm navbar-light navbar-lewagon">
   <div class="navbar-container container-fluid">
-    <%= link_to raclettes_path, class: "navbar-brand" do %>
-      <%= image_tag "icon.png" %>
+    <%= link_to root_path, class: "navbar-brand" do %>
+      <%= image_tag "logo-long-color.png", alt: "logo raclettenb", class: "navbar-logo-large" %>
     <% end %>
 
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -11,19 +11,18 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav me-auto">
         <% if user_signed_in? %>
-          <li class="nav-item active">
-            <%# link_to "Home", raclettes_path, class: "nav-link" %>
-          </li>
           <li class="nav-item">
-            <%= link_to "Mettre mon appareil sur Raclettenb", new_raclette_path, class: "nav-link" %>
+            <%= link_to "Bonjour #{current_user.first_name.capitalize}", dashboard_path, class: "nav-link" %>
           </li>
+
           <li class="nav-item dropdown">
             <%= image_tag "user-icon.png", class: "dropdown-toggle", id: "navbarDropdown", data: { bs_toggle: "dropdown" }, 'aria-haspopup': true, 'aria-expanded': false %>
             <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
               <%= link_to "Mes réservations", bookings_path, class: "dropdown-item" %>
+              <%= link_to "Ajouter un appareil", new_raclette_path, class: "dropdown-item" %>
               <%= link_to "Mes appareils", dashboard_path, class: "dropdown-item" %>
               <hr>
-              <%= link_to "Déconnexion", destroy_user_session_path, class: "dropdown-item", data: {turbo_method: :delete} %>
+              <%= link_to "Déconnexion", destroy_user_session_path, class: "dropdown-item", data: { turbo_method: :delete } %>
             </div>
           </li>
         <% else %>
