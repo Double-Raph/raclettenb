@@ -13,3 +13,17 @@
 
 // Geocoder
 @import url("https://api.mapbox.com/mapbox-gl-js/v3.1.2/mapbox-gl.css");
+
+.navbar .navbar-brand .navbar-logo-large {
+  width: 50% !important;
+  height: auto !important;
+}
+
+.footer-links i {
+  color: #ff5a5e;
+  transition: color 0.3s ease;
+}
+
+.footer-links i:hover {
+  color: #ff5a5e;
+}
