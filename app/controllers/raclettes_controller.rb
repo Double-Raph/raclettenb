@@ -5,18 +5,27 @@ class RaclettesController < ApplicationController
   @raclettes = Raclette.where.not(latitude: nil, longitude: nil)
 
   if params[:capacity].present?
-    @raclettes = @raclettes.where("capacity >= ?", params[:capacity].to_i)
+    capacity = params[:capacity].to_i
+    exact_match = @raclettes.where(capacity: capacity)
+
+    if exact_match.exists?
+      @raclettes = exact_match
+    else
+      @raclettes = @raclettes.where("capacity BETWEEN ? AND ?", capacity - 2, capacity + 2)
+    end
   end
 
-  if params[:city].present?
-    @raclettes = @raclettes.where("city ILIKE ?", "%#{params[:city]}%")
+  if params[:address].present?
+    @raclettes = @raclettes.where("address ILIKE ?", "%#{params[:address]}%")
   end
 
   @markers = @raclettes.map do |raclette|
     {
       lat: raclette.latitude,
       lng: raclette.longitude,
-      info_window_html: render_to_string(partial: "info_window", locals: { raclette: raclette })
+      info_window_html: render_to_string(partial: "info_window", locals: { raclette: raclette }),
+      image_url: helpers.asset_path("raclette-icon.png"),
+      link: raclette_path(raclette)
     }
   end
   end
@@ -33,7 +42,7 @@ class RaclettesController < ApplicationController
   def create
     @raclette = Raclette.new(raclette_params.merge(address: current_user.address, city: current_user.city))
     @raclette.user = current_user
-    
+
     @raclette.city = current_user.city
 
 
