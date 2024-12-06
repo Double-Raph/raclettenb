@@ -31,11 +31,11 @@ class RaclettesController < ApplicationController
   end
 
   def create
-    @raclette = Raclette.new(raclette_params)
+    @raclette = Raclette.new(raclette_params.merge(address: current_user.address, city: current_user.city))
     @raclette.user = current_user
-
     
     @raclette.city = current_user.city
+
 
     if @raclette.save
       redirect_to dashboard_path, notice: "Appareil bien enregistré !"
