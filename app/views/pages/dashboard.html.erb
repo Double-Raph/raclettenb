@@ -1,7 +1,19 @@
 <div class="container mt-5">
   <h1 class="text-center mb-4">Dashboard</h1>
-  <h2 class="text-center mb-5 text-muted">Mes appareils</h2>
 
+  <!-- mes infos -->
+  <div class="mb-5">
+    <h2 class="text-center mb-4 text-muted">Mes infos</h2>
+    <div class="card shadow-sm border-light rounded-5">
+      <div class="card-body">
+        <p><strong>Nom :</strong> <%= current_user.first_name %> <%= current_user.last_name %></p>
+        <p><strong>Adresse :</strong> <%= current_user.address %>, <%= current_user.city %>, <%= current_user.country %></p>
+      </div>
+    </div>
+  </div>
+
+  <!-- mes appareils -->
+  <h2 class="text-center mb-5 text-muted">Mes appareils</h2>
   <% if @my_raclettes.any? %>
     <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
       <% @my_raclettes.each do |raclette| %>
