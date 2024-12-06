@@ -1,27 +1,35 @@
 <div class="container">
- <h1 class="my-5">Mes réservations</h1>
- <div class="row row-cols-md-4 g-4">
-   <% @bookings.each do |booking| %>
-     <div class="col">
-       <div class="card h-100 shadow", style="border-radius: 7px;">
-         <div class="card-body d-flex flex-column justify-content-between">
-           <div>
-             <div class="my-1"><%= booking.status %></div>
-           </div>
-           <p class="card-text">
-            <%= booking.start_date.strftime("%d %b %Y") %> - <%= booking.end_date.strftime("%d %b %Y") %>
-           </p>
-           <div>
-             <div><%= link_to "Détails", booking_path(booking), class: "my-1 mb-3 btn btn-red w-100"%></div>
-             <%= link_to "Annuler la réservation",
-                        booking_path(booking), data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this booking ?"}, class: 'text-danger text-decoration-none' %>
-           </div>
-         </div>
-       </div>
-     </div>
-   <% end %>
- </div>
- <div class="mt-5">
-   <%= link_to "Trouver un appareil à raclette", raclettes_path, class: "btn btn-secondary", style: "border-radius: 7px;"%>
- </div>
+  <h1 class="my-5">Mes réservations</h1>
+  <div class="row row-cols-md-4 g-4">
+    <% @bookings.each do |booking| %>
+      <div class="col">
+        <div class="card h-100 shadow", style="border-radius: 7px;">
+          <%= image_tag booking.raclette.photo.attached? ? booking.raclette.photo : "raclette-placeholder.webp",
+              class: "card-img-top",
+              alt: "machine-img",
+              style: "height: 200px; object-fit: cover"
+          %>
+          <div class="card-body d-flex flex-column justify-content-between">
+            <div>
+              <div class="my-1"><%= booking.status %></div>
+            </div>
+            <p class="card-text">
+              <%= booking.start_date.strftime("%d %b %Y") %> - <%= booking.end_date.strftime("%d %b %Y") %>
+            </p>
+            <div>
+              <div><%= link_to "Détails", booking_path(booking), class: "my-1 mb-3 btn btn-red w-100"%></div>
+              <%= link_to "Annuler la réservation",
+                  booking_path(booking),
+                  data: { turbo_method: :delete, turbo_confirm: "Are you sure you want to delete this booking ?"},
+                  class: 'text-danger text-decoration-none'
+              %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="mt-5">
+    <%= link_to "Trouver un appareil à raclette", raclettes_path, class: "btn btn-secondary", style: "border-radius: 7px;"%>
+  </div>
 </div>
