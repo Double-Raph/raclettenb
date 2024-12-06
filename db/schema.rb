@@ -62,10 +62,10 @@ ActiveRecord::Schema[7.1].define(version: 2024_12_06_081510) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "city", default: "Soustons"
     t.float "latitude"
     t.float "longitude"
     t.string "address"
-    t.string "city", default: "Soustons"
     t.string "country"
     t.index ["user_id"], name: "index_raclettes_on_user_id"
   end
