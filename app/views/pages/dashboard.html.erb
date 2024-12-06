@@ -1,61 +1,69 @@
-<div class="container">
-<h1 class="text-center m-4">Dashboard</h1>
-<h2 class="text-center mb-4">Mes appareils</h2>
-</div>
-<div class="container">
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Dashboard</h1>
+  <h2 class="text-center mb-5 text-muted">Mes appareils</h2>
+
   <% if @my_raclettes.any? %>
-    <ul class="list-group">
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
       <% @my_raclettes.each do |raclette| %>
-        <li class="list-group-item d-flex justify-content-between align-items-center">
-
-          <div class="d-flex align-items-center">
-            <%= image_tag raclette.photo.url, alt: "#{raclette.category} photo", class: "img-thumbnail me-3", style: "width: 80px; height: 80px; object-fit: cover;" if raclette.photo.attached? %>
-            <div>
-              <strong><%= raclette.category.capitalize %></strong> - <%= number_to_currency(raclette.price, unit: "€") %> / jour
-              <div><strong>Réservations :</strong> <%= raclette.bookings.count %></div>
+        <div class="col">
+          <div class="card shadow-sm border-light rounded-5">
+            <div class="position-relative">
+              <%= image_tag raclette.photo.url, alt: "#{raclette.category} photo", class: "card-img-top rounded-top-5", style: "object-fit: cover; height: 200px;" if raclette.photo.attached? %>
             </div>
-          </div>
 
-          <div class="ms-auto">
-            <%= link_to '#', class: 'btn btn-outline-secondary btn-sm me-2', data: { bs_toggle: 'collapse', bs_target: "#reservationsCollapse#{raclette.id}", aria_expanded: 'false', aria_controls: "reservationsCollapse#{raclette.id}" } do %>
-              <i class="fas fa-calendar-alt"></i> Réservations
-            <% end %>
-
-            <%= link_to raclette_path(raclette), class: 'btn btn-outline-primary btn-sm me-2' do %>
-              <i class="fas fa-eye"></i>
-            <% end %>
-
-            <%= link_to edit_raclette_path(raclette), class: 'btn btn-outline-dark btn-sm me-2' do %>
-              <i class="fas fa-edit"></i>
-            <% end %>
-
-            <%= link_to raclette_path(raclette), turbo_method: :delete, data: { confirm: 'Êtes-vous sûr de vouloir supprimer cette raclette ?' }, class: 'btn btn-outline-danger btn-sm' do %>
-              <i class="fas fa-trash-alt"></i>
-            <% end %>
-          </div>
-        </li>
-
-        <div class="collapse" id="reservationsCollapse<%= raclette.id %>">
-          <div class="card card-body mt-2">
-            <% if raclette.bookings.any? %>
-              <ul class="list-group">
-                <% raclette.bookings.each do |booking| %>
-                  <li class="list-group-item">
-                    Du <%= booking.start_date.strftime('%d %b %Y') %> au <%= booking.end_date.strftime('%d %b %Y') %>
-                    <strong>Status :</strong> <span class="capsule"><%= booking.status.capitalize %></span>
-                      <%= link_to 'Accept', accept_booking_path(booking), data: {turbo_method: :patch}, class: 'capsule' %>
-                      <%= link_to 'Decline', decline_booking_path(booking), data: {turbo_method: :patch}, class: 'capsule' %>
-                  </li>
+            <div class="card-body">
+              <div class="mb-2">
+                <strong class="d-block text-uppercase text-muted"><%= raclette.category.capitalize %></strong>
+              </div>
+              <p class="card-text text-secondary">
+                <strong>Prix :</strong> <%= number_to_currency(raclette.price, unit: "€") %> / jour
+              </p>
+              <p class="card-text"><strong>Réservations :</strong> <%= raclette.bookings.count %></p>
+              <div class="d-flex justify-content-between">
+                <%= link_to '#', class: 'btn btn-outline-secondary btn-sm rounded-3', data: { bs_toggle: 'collapse', bs_target: "#reservationsCollapse#{raclette.id}", aria_expanded: 'false', aria_controls: "reservationsCollapse#{raclette.id}" } do %>
+                  <i class="fas fa-calendar-alt"></i> Réservations
                 <% end %>
-              </ul>
-            <% else %>
-              <p>Aucune réservation pour cette raclette.</p>
-            <% end %>
+
+                <%= link_to raclette_path(raclette), class: 'btn btn-outline-primary btn-sm rounded-3' do %>
+                  <i class="fas fa-eye"></i>
+                <% end %>
+
+                <%= link_to edit_raclette_path(raclette), class: 'btn btn-outline-dark btn-sm rounded-3' do %>
+                  <i class="fas fa-edit"></i>
+                <% end %>
+                <%= link_to raclette_path(raclette), data: { turbo_method: :delete, turbo_confirm: 'Êtes-vous sûr de vouloir supprimer cette raclette ?' }, class: 'btn btn-outline-danger btn-sm rounded-3' do %>
+                  <i class="fas fa-trash-alt"></i>
+                <% end %>
+              </div>
+            </div>
+
+            <div class="collapse" id="reservationsCollapse<%= raclette.id %>">
+              <div class="card card-body mt-3 rounded-4">
+                <% if raclette.bookings.any? %>
+                  <ul class="list-group">
+                    <% raclette.bookings.each do |booking| %>
+                      <li class="list-group-item d-flex justify-content-between align-items-center rounded-3">
+                        <div>
+                          Du <%= booking.start_date.strftime('%d %b %Y') %> au <%= booking.end_date.strftime('%d %b %Y') %>
+                          <div><strong>Status :</strong> <span class="badge text-bg-info"><%= booking.status.capitalize %></span></div>
+                        </div>
+                        <div class="d-flex">
+                          <%= link_to 'Accept', accept_booking_path(booking), data: {turbo_method: :patch}, class: 'btn btn-success btn-sm ms-2 rounded-3' %>
+                          <%= link_to 'Decline', decline_booking_path(booking), data: {turbo_method: :patch}, class: 'btn btn-danger btn-sm ms-2 rounded-3' %>
+                        </div>
+                      </li>
+                    <% end %>
+                  </ul>
+                <% else %>
+                  <p>Aucune réservation pour cette raclette.</p>
+                <% end %>
+              </div>
+            </div>
           </div>
         </div>
       <% end %>
-    </ul>
+    </div>
   <% else %>
-    <p class="text-center">Tu n'as pas d'appareil.</p>
+    <p class="text-center text-warning">Tu n'as pas d'appareil.</p>
   <% end %>
 </div>

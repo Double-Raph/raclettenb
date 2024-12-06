@@ -8,3 +8,14 @@
   justify-content: flex-start;
   align-items: stretch;
 }
+
+.show-container {
+  width: 70%;
+  margin: 0 auto;
+}
+
+@media (max-width: 768px) {
+  .show-container {
+    width: 100%; 
+  }
+}

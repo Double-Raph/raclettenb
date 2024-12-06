@@ -2,20 +2,23 @@ class RaclettesController < ApplicationController
   skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
-    @raclettes = Raclette.all
-    if params[:capacity].present?
-      @raclettes = @raclettes.where(capacity: params[:capacity])
-    end
-    if params[:city].present?
-      @raclettes = @raclettes.where("city ILIKE ?", "%#{params[:city]}%")
-    end
+  @raclettes = Raclette.where.not(latitude: nil, longitude: nil)
 
-    @markers = @raclettes.geocoded.map do |raclette|
-      {
-        lat: raclette.latitude,
-        lng: raclette.longitude
-      }
-    end
+  if params[:capacity].present?
+    @raclettes = @raclettes.where("capacity >= ?", params[:capacity].to_i)
+  end
+
+  if params[:city].present?
+    @raclettes = @raclettes.where("city ILIKE ?", "%#{params[:city]}%")
+  end
+
+  @markers = @raclettes.map do |raclette|
+    {
+      lat: raclette.latitude,
+      lng: raclette.longitude,
+      info_window_html: render_to_string(partial: "info_window", locals: { raclette: raclette })
+    }
+  end
   end
 
   def show
@@ -30,9 +33,11 @@ class RaclettesController < ApplicationController
   def create
     @raclette = Raclette.new(raclette_params)
     @raclette.user = current_user
-    @raclette.city = current_user.address
+    @raclette.address = current_user.address
+    @raclette.city = current_user.city
+
     if @raclette.save
-      redirect_to dashboard_path, notice: "Machine bien enregistré"
+      redirect_to dashboard_path, notice: "Appareil bien enregistré !"
     else
       render :new, status: :unprocessable_entity
     end
@@ -46,7 +51,7 @@ class RaclettesController < ApplicationController
     @raclette = Raclette.find(params[:id])
 
     if @raclette.update(raclette_params)
-      redirect_to dashboard_path, notice: "mise à jour effectuée !"
+      redirect_to dashboard_path, notice: "Mise à jour effectuée !"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -55,12 +60,12 @@ class RaclettesController < ApplicationController
   def destroy
     @raclette = Raclette.find(params[:id])
     @raclette.destroy
-    redirect_to dashboard_path, notice: "Raclette supprimée"
+    redirect_to dashboard_path, notice: "Appareil supprimé"
   end
 
   private
 
   def raclette_params
-    params.require(:raclette).permit(:category, :capacity, :description, :price, :photo, :address, :city, :country)
+    params.require(:raclette).permit(:category, :capacity, :description, :price, :photo)
   end
 end
