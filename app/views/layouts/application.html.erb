@@ -1,20 +1,18 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <%= render "shared/navbar" %>
     <title>Raclettenb</title>
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
-
-  <body>
-    <%= yield %>
-  </body>
-    <footer>
+  <body class="d-flex flex-column min-vh-100">
+    <%= render "shared/navbar" %>
+    <main class="flex-grow-1">
+      <%= yield %>
+    </main>
     <%= render 'shared/footer' %>
-  </footer>
+  </body>
 </html>
