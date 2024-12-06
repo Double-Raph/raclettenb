@@ -43,13 +43,23 @@ random_addresses = [
   { address: "39 Rue du Commerce, 75015 Paris, France"},
   { address: "7 Rue Perelle, 44000 Nantes, France"},
   { address: "6 Rue de la Carbonnerie, 34000 Montpellier, France" },
-  { address: "3 Bd Michelet, 13008 Marseille, France"}
+  { address: "3 Bd Michelet, 13008 Marseille, France"},
+  { address: "1 Allées de Chartres, 33000 Bordeaux, France" },
+  { address: "43 Rue Chantecrit, 33300 Bordeaux, France" },
+  { address: "17 Rue Sainte-Catherine, 33000 Bordeaux, France" },
+  { address: "1 Pl. de la Victoire, 33000 Bordeaux, France" },
+  { address: "3 Av. Robert Schuman, 33130 Bègles, France" },
+  { address: "120-126 Quai de Bacalan, 33300 Bordeaux, France" },
+  { address: "20 Cr Saint-Louis, 33300 Bordeaux, France" },
+  { address: "131 Cr du Médoc, 33300 Bordeaux, France" },
+  { address: "3 All. de Tourny, 33000 Bordeaux, France" },
+  { address: "89 Av. Jules Guesde, 33110 Le Bouscat, France" }
 ]
 
 random_users = random_addresses.map do |data|
   User.create!(
     email: Faker::Internet.email,
-    password: Faker::Internet.password(min_length: 6),
+    password: "aukera",
     first_name: Faker::Name.first_name,
     last_name: Faker::Name.last_name,
     address: data[:address],
