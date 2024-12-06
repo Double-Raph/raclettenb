@@ -1,5 +1,10 @@
 <div class="d-flex justify-content-center my-5">
  <div class="card shadow p-5" style="width: 600px; border-radius: 7px;">
+   <%= image_tag @booking.raclette.photo.attached? ? @booking.raclette.photo : "raclette-placeholder.webp",
+       class: "card-img-top mb-4",
+       alt: "machine-img",
+       style: "height: 300px; object-fit: cover"
+   %>
    <h1 class="text-center mb-4">Ma réservation</h1>
    <div class="mb-3">
      <strong>Dates :</strong>
