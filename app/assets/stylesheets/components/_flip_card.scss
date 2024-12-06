@@ -38,6 +38,9 @@
 
 .card-img-top {
   border-radius: 8px;
+  background-size: cover;
+  height: 200px;
+  width: 100%;
 }
 
 /* Capsule styles */
@@ -49,7 +52,7 @@
 
 .capsules {
   display: flex;
-  justify-content: space-between;
+  justify-content: space-evenly;
   align-items: end;
 }
 

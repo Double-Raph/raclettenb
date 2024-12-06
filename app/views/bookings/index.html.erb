@@ -3,13 +3,9 @@
   <div class="row row-cols-md-4 g-4">
     <% @bookings.each do |booking| %>
       <div class="col">
-      <% if booking.status == "declined" %>
-        <div class="card h-100 disabled", style="border-radius: 7px;">
-      <% else %>
         <div class="card h-100 shadow", style="border-radius: 7px;">
-      <% end %>
           <%= image_tag booking.raclette.photo.attached? ? booking.raclette.photo : "raclette-placeholder.webp",
-              class: "card-img-top",
+              class: "card-img-top z-2",
               alt: "machine-img",
               style: "height: 200px; object-fit: cover"
           %>
