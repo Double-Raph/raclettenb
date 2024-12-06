@@ -9,12 +9,11 @@ class Raclette < ApplicationRecord
   validates :description, presence: true, length: { minimum: 10 }
   validates :capacity, presence: true, numericality: { only_integer: true, greater_than_or_equal_to: 2, less_than_or_equal_to: 20 }
   validates :price, presence: true
-  validates :city, presence: true
 
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
 
-  # def address
-  #   user.address
-  # end
+  def full_address
+    "#{address}, #{city}, #{country}"
+  end
 end

@@ -33,8 +33,9 @@ class RaclettesController < ApplicationController
   def create
     @raclette = Raclette.new(raclette_params)
     @raclette.user = current_user
-    @raclette.city = current_user.city
     @raclette.address = current_user.address
+    @raclette.city = current_user.city
+
     if @raclette.save
       redirect_to dashboard_path, notice: "Appareil bien enregistré !"
     else
@@ -65,6 +66,6 @@ class RaclettesController < ApplicationController
   private
 
   def raclette_params
-    params.require(:raclette).permit(:category, :capacity, :description, :price, :photo, :address, :city, :country)
+    params.require(:raclette).permit(:category, :capacity, :description, :price, :photo)
   end
 end
