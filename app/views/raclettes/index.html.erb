@@ -1,18 +1,20 @@
-<div class="container-fluid py-4">
-  <h1 class="my-5">Les machines raclettes</h1>
+<div class="container-fluid py-4 min-vh-100">
   <div class="row gx-5 align-items-start">
 
     <!-- Liste des raclettes -->
     <div class="col-lg-8" id="raclette-list">
-      <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+    <h1 class="my-3">Les machines à raclette</h1>
+    <p><span class="mb-3 badge text-bg-info text-white"><%= @raclettes.length %> appareils à raclette correspondent à tes critères.</span></p>
+      <div class="row row-cols-1 row-cols-sm-1 row-cols-md-2 row-cols-lg-3 g-4">
         <% @raclettes.each do |raclette| %>
           <div class="col">
             <%= link_to raclette_path(raclette), class: "text-decoration-none" do %>
               <div class="flip-card">
                 <div class="flip-card-inner">
                   <!-- Face avant -->
-                  <div class="flip-card-front">
-                    <%= image_tag raclette.photo.attached? ? raclette.photo : "raclette-placeholder.webp", class: "card-img-top", alt: "machine-img", style: "height: 200px; width: 100%; object-fit: cover" %>
+                  <div class="flip-card-front card-img-top" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<%= image_path raclette.photo.attached? ? raclette.photo : "raclette-placeholder.webp" %>')">
+                    <%# image_tag raclette.photo.attached? ? raclette.photo : "raclette-placeholder.webp", class: "card-img-top", alt: "machine-img", style: " " %>
+                    <div style="height: 75%"></div>
                     <div class="capsules">
                       <div class="capsule" style="background-color: #FF5A5F; color: white;"><%= raclette.category %></div>
                       <div class="capsule" style="background-color: #FF5A5F; color: white;"><%= raclette.capacity %> places</div>
@@ -20,11 +22,12 @@
                     </div>
                   </div>
                   <!-- Face arrière -->
-                  <div class="flip-card-back" style="padding: 1rem; background-color: #f8f9fa; text-align: center;">
-                    <h5 class="card-title mb-2 text-capitalize"><%= raclette.category %></h5>
-                    <p class="card-text mb-1 text-muted">
-                    </p>
-                    <p class="card-text"><%= raclette.description %></p>
+                  <div class="flip-card-back" style="padding: 1rem; background-color: #f8f9fa; text-align: left;">
+                    <p class="card-text mb-1"><%= raclette.description %></p>
+                    <p class="card-text mb-1 opacity-75"><i class="fa-solid fa-cheese"></i>  Appareil de type <%= raclette.category %></p>
+                    <p class="card-text mb-2 opacity-75"><i class="fa-solid fa-user-group"></i>  <%= raclette.capacity %> personnes</p>
+                    <p class="card-text mb-2 opacity-75"><i class="fa-solid fa-map-pin"></i>  <%= raclette.address %></p>
+                    <h5 class="card-text mb-0"><%= raclette.price %>€</h5>
                   </div>
                 </div>
               </div>
@@ -34,7 +37,7 @@
       </div>
     </div>
 
-    <div class="col-lg-4 d-flex">
+    <div class="col-lg-4 d-flex sticky-top sticky-offset z-2" style="margin-top: 70px">
       <div id="map"
            style="width: 100%; height: 90vh; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); border: 1px solid #e0e0e0;"
            data-controller="map"
