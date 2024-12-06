@@ -33,9 +33,10 @@ class RaclettesController < ApplicationController
   def create
     @raclette = Raclette.new(raclette_params)
     @raclette.user = current_user
-    @raclette.city = current_user.address
+    @raclette.city = current_user.city
+    @raclette.address = current_user.address
     if @raclette.save
-      redirect_to dashboard_path, notice: "Machine bien enregistré"
+      redirect_to dashboard_path, notice: "Appareil bien enregistré !"
     else
       render :new, status: :unprocessable_entity
     end
@@ -49,7 +50,7 @@ class RaclettesController < ApplicationController
     @raclette = Raclette.find(params[:id])
 
     if @raclette.update(raclette_params)
-      redirect_to dashboard_path, notice: "mise à jour effectuée !"
+      redirect_to dashboard_path, notice: "Mise à jour effectuée !"
     else
       render :edit, status: :unprocessable_entity
     end
@@ -58,7 +59,7 @@ class RaclettesController < ApplicationController
   def destroy
     @raclette = Raclette.find(params[:id])
     @raclette.destroy
-    redirect_to dashboard_path, notice: "Raclette supprimée"
+    redirect_to dashboard_path, notice: "Appareil supprimé"
   end
 
   private
