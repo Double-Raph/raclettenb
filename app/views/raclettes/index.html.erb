@@ -12,7 +12,11 @@
               <div class="flip-card">
                 <div class="flip-card-inner">
                   <!-- Face avant -->
-                  <div class="flip-card-front card-img-top" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<%= image_path raclette.photo.attached? ? raclette.photo : "raclette-placeholder.webp" %>')">
+                  <% if raclette.photo.attached? %>
+                  <div class="flip-card-front card-img-top" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<%= url_for(raclette.photo)%>')">
+                    <% else %>
+                      <div class="flip-card-front card-img-top" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('<%= image_path "raclette-placeholder.webp" %>')">
+                    <% end %>
                     <%# image_tag raclette.photo.attached? ? raclette.photo : "raclette-placeholder.webp", class: "card-img-top", alt: "machine-img", style: " " %>
                     <div style="height: 75%"></div>
                     <div class="capsules">
