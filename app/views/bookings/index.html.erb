@@ -3,7 +3,11 @@
   <div class="row row-cols-md-4 g-4">
     <% @bookings.each do |booking| %>
       <div class="col">
+      <% if booking.status == "declined" %>
+        <div class="card h-100 disabled", style="border-radius: 7px;">
+      <% else %>
         <div class="card h-100 shadow", style="border-radius: 7px;">
+      <% end %>
           <%= image_tag booking.raclette.photo.attached? ? booking.raclette.photo : "raclette-placeholder.webp",
               class: "card-img-top",
               alt: "machine-img",
@@ -11,7 +15,13 @@
           %>
           <div class="card-body d-flex flex-column justify-content-between">
             <div>
-              <div class="my-1"><%= booking.status %></div>
+              <% if booking.status == "pending" %>
+                <div class="my-1"><span class="badge text-bg-info text-white">Réservation en attente</span></div>
+              <% elsif booking.status == "confirmed" %>
+                <div class="my-1"><span class="badge text-bg-success text-white">Réservation acceptée</span></div>
+              <% else booking.status == "declined" %>
+                <div class="my-1"><span class="badge text-bg-danger text-white">Réservation refusée</span></div>
+              <% end %>
             </div>
             <p class="card-text">
               <%= booking.start_date.strftime("%d %b %Y") %> - <%= booking.end_date.strftime("%d %b %Y") %>

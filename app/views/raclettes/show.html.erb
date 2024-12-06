@@ -11,18 +11,25 @@
     <div class="card shadow" style="max-width: 400px; border-radius: 7px;">
       <%= image_tag @raclette.photo.attached? ? @raclette.photo : "raclette-placeholder.webp", class: "card-img-top", alt: "machine-img", style: "height: 200px; object-fit: cover" %>
       <div class="card-body">
-        <h5 class="card-title mb-2">Appareil de type <%= @raclette.category %></h5>
-        <p class="card-text mb-1 opacity-75"><%= @raclette.description %></p>
-        <p class="card-text mb-2 opacity-75">Capacité: <%= @raclette.capacity %> personnes</p>
+        <p class="card-text mb-1"><%= @raclette.description %></p>
+        <p class="card-text mb-1 opacity-75"><i class="fa-solid fa-cheese"></i>  Appareil de type <%= @raclette.category %></p>
+        <p class="card-text mb-2 opacity-75"><i class="fa-solid fa-user-group"></i>  <%= @raclette.capacity %> personnes</p>
+        <p class="card-text mb-2 opacity-75"><i class="fa-solid fa-map-pin"></i>  <%= @raclette.address %>, <%= @raclette.city %></p>
         <h5 class="card-text mb-0"><%= @raclette.price %>€</h5>
       </div>
     </div>
 
     <div class="card shadow p-4" style="flex: 1; max-width: 800px; border-radius: 7px;">
-      <h2 class="text-center mb-4">Réserver une machine à raclette</h2>
+      <h2 class="text-center mb-4">Réserver cette machine</h2>
       <%= simple_form_for [@raclette, @booking] do |f| %>
-        <%= f.date_field :start_date, class: "form-control", min: Date.today %>
-        <%= f.date_field :end_date, class: "form-control", min: Date.tomorrow %>
+      <div class="d-flex">
+        <div class="col-md-6">
+          <%= f.date_field :start_date, class: "form-control", min: Date.today %>
+        </div>
+        <div class="col-md-6">
+          <%= f.date_field :end_date, class: "form-control", min: Date.today %>
+        </div>
+      </div>
         <div class="text-center mt-4">
           <%= f.submit "Confirmer", class: "btn btn-red btn-lg" %>
         </div>
