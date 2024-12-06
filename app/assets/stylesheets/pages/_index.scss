@@ -1,2 +1,79 @@
 // Import page-specific CSS files here.
 @import "home";
+
+/* Custom Marker */
+.custom-marker img {
+  border-radius: 50%;
+  border: 2px solid #ff5a5f;
+}
+
+.custom-marker {
+  display: inline-block;
+  background-color: white;
+  border: 2px solid #ff5a5f;
+}
+
+/* Raclette Card */
+.raclette-card {
+  border: 1px solid #e0e0e0;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  transition: transform 0.2s ease, box-shadow 0.2s ease; /* Ajout pour hover */
+  margin-bottom: 20px; /* Espacement entre les cartes */
+}
+
+.raclette-card:hover {
+  transform: scale(1.02);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.raclette-card img {
+  height: 200px;
+  object-fit: cover;
+  border-bottom: 1px solid #e0e0e0; /* Séparation visuelle */
+}
+
+/* Map Styling */
+#map {
+  border-radius: 10px; /* Bords arrondis */
+  background-color: #f9f9f9;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  border: 1px solid #ddd; /* Bordure légère */
+  margin-top: 20px; /* Espacement avec le haut */
+}
+
+/* Global Container */
+.container-fluid {
+  padding: 20px;
+}
+
+/* Card Body Styling */
+.card-body {
+  padding: 15px;
+}
+
+.card-title {
+  font-size: 1.25rem;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.card-text {
+  color: #555;
+  font-size: 0.9rem;
+  margin-bottom: 15px;
+}
+
+.btn-danger {
+  background-color: #ff5a5f;
+  border: none;
+  padding: 10px 15px;
+  font-size: 0.9rem;
+  transition: background-color 0.2s ease;
+}
+
+.btn-danger:hover {
+  background-color: #e0484d;
+}
