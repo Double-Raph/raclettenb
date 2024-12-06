@@ -43,8 +43,8 @@
                   <li class="list-group-item">
                     Du <%= booking.start_date.strftime('%d %b %Y') %> au <%= booking.end_date.strftime('%d %b %Y') %>
                     <strong>Status :</strong> <span class="capsule"><%= booking.status.capitalize %></span>
-                      <%= link_to 'Accept', accept_booking_path(booking), class: 'capsule' %>
-                      <%= link_to 'Decline', decline_booking_path(booking), class: 'capsule' %>
+                      <%= link_to 'Accept', accept_booking_path(booking), data: {turbo_method: :patch}, class: 'capsule' %>
+                      <%= link_to 'Decline', decline_booking_path(booking), data: {turbo_method: :patch}, class: 'capsule' %>
                   </li>
                 <% end %>
               </ul>

@@ -16,9 +16,10 @@ Rails.application.routes.draw do
   resources :bookings, except: [:new, :create] do
     member do
       patch :decline
+      patch :accept
     end
   end
-  patch "bookings/:id", to: "bookings#accept", as: :accept_booking
+  # patch "bookings/:id", to: "bookings#accept", as: :accept_booking
 
   get :my_bookings, to: "bookings#my_bookings", as: "my_bookings"
   get :dashboard, to: "pages#dashboard", as: "dashboard"
